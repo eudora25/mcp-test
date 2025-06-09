@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteBase /
+
+        # 실제 파일이나 디렉토리가 있는 경우 리다이렉트하지 않음
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+
+        # index.php를 제외한 나머지 요청을 처리
+        RewriteCond $1 !^(index\.php|images|captcha|data|include|uploads|robots\.txt)
+        
+        # 모든 요청을 index.php로 리다이렉트
+        RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+# PHP 에러 표시 설정
+php_value display_errors On
+php_value display_startup_errors On
