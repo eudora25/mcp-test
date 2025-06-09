@@ -1,0 +1,45 @@
+<?
+	phpinfo();
+    $hostname = exec("/home/bin/hostname");	
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>대한민국 No.1 카페24 호스팅</title>
+<script>
+	// 예시 API endpoint 주소
+	const apiUrl = 'https://qa.erp.parmple.com/df/hospital-info/fetch';
+
+	// 사용자 토큰 (서버에서 발급받거나 로컬 스토리지에서 가져옴)
+	const userToken = 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwiY29tcGFueUlkIjoiMSIsInR5cGUiOiJNQU5VRkFDVFVSRVIiLCJzdWIiOiJkZW1vMkBkZW1vLmNvbSIsImlhdCI6MTc0NTM2Nzk1MSwiZXhwIjoxNzY3MTkzMTk5fQ.1ltEgpsVL5JK1e447ehokafVWFTPqYq-yEeCHTJKz0adAoqf_o6ZU68yPwhQKS9ZuuljJcXDiwBBSBR9UgVgOA';
+
+// API 요청 함수
+async function fetchData() {
+    try {
+        // 요청 헤더에 토큰 포함
+        const response = await fetch(apiUrl, {
+            headers: {
+                'Authorization': `Bearer ${userToken}`  // Bearer 토큰 형식
+            }
+        });
+
+        // 응답 처리
+        if (response.ok) {
+            const data = await response.json();
+            console.log('API 응답:', data);
+        } else {
+            console.error('API 요청 실패:', response.status);
+        }
+    } catch (error) {
+        console.error('API 요청 중 오류 발생:', error);
+    }
+}
+
+// 함수 실행
+fetchData();
+</script>
+</head>
+<body>
+111
+</body>
+</html>

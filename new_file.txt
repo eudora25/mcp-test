@@ -1,0 +1,5 @@
+mcp-test라는 이름으로 GitHub에 새로운 레포지토리를 성공적으로 만들었습니다.
+
+[https://github.com/eudora25/mcp-test](https://github.com/eudora25/mcp-test) 에서 확인하실 수 있습니다.
+
+혹시 "mcp tool"이 `gh` 명령어에 대한 다른 표현이었을까요? 만약 다른 도구를 생각하고 계셨다면 알려주세요. 
