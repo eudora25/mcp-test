@@ -1,270 +1,267 @@
+<style>
+    /* 분류 상세 페이지 전용 스타일 */
+    .detail-hero {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
 
-
-/* 추가 스타일 */
-.detail-hero {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.detail-hero h2 {
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-}
-
-.detail-hero .breadcrumb-text {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    margin-bottom: 1rem;
-}
-
-.back-btn {
-    background: var(--primary-gradient);
-    border: none;
-    color: white;
-    padding: 0.6rem 1.5rem;
-    border-radius: 15px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.back-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-    color: white;
-    text-decoration: none;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.stat-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--primary-gradient);
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
-}
-
-.stat-card .icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1rem;
-    background: var(--primary-gradient);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: white;
-}
-
-.stat-card h6 {
-    color: var(--text-secondary);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.stat-card .stat-value {
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 0;
-}
-
-.data-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.data-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 1);
-}
-
-.data-card .card-header {
-    background: rgba(102, 126, 234, 0.1);
-    border-bottom: 1px solid rgba(102, 126, 234, 0.2);
-    padding: 1.5rem;
-}
-
-.data-card .card-title {
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.data-card .card-body {
-    padding: 1.5rem;
-}
-
-/* 테이블 스타일 */
-.table {
-    color: var(--text-primary);
-    margin-bottom: 0;
-}
-
-.table th {
-    border-color: rgba(102, 126, 234, 0.2);
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 1rem 0.75rem;
-    background: rgba(102, 126, 234, 0.05);
-    white-space: nowrap;
-}
-
-.table td {
-    border-color: rgba(102, 126, 234, 0.1);
-    color: var(--text-secondary);
-    padding: 0.75rem;
-    vertical-align: middle;
-}
-
-.table tbody tr {
-    transition: all 0.2s ease;
-}
-
-.table tbody tr:hover {
-    background: rgba(102, 126, 234, 0.08);
-    transform: scale(1.01);
-}
-
-/* 제품 상태 뱃지 */
-.status-badge {
-    padding: 0.4rem 0.8rem;
-    border-radius: 15px;
-    font-weight: 600;
-    font-size: 0.8rem;
-}
-
-.status-active {
-    background: var(--success-gradient);
-    color: white;
-}
-
-.status-inactive {
-    background: var(--secondary-gradient);
-    color: white;
-}
-
-/* 수수료 뱃지 */
-.commission-badge {
-    background: var(--info-gradient);
-    color: white;
-    padding: 0.3rem 0.6rem;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.8rem;
-}
-
-.price-badge {
-    background: var(--warning-gradient);
-    color: white;
-    padding: 0.3rem 0.6rem;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.8rem;
-}
-
-/* 중단된 제품 스타일 */
-.product-discontinued {
-    background: rgba(220, 53, 69, 0.1) !important;
-}
-
-.product-discontinued td {
-    color: rgba(220, 53, 69, 0.8) !important;
-}
-
-/* 빈 상태 스타일 */
-.empty-state {
-    text-align: center;
-    padding: 3rem 1rem;
-}
-
-.empty-state i {
-    font-size: 3rem;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-}
-
-.empty-state h5 {
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-}
-
-.empty-state p {
-    color: var(--text-muted);
-    margin-bottom: 0;
-}
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
     .detail-hero h2 {
-        font-size: 1.8rem;
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
     }
-    
+
+    .breadcrumb-text {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .back-btn {
+        background: var(--primary-gradient);
+        border: none;
+        color: white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        color: white;
+        text-decoration: none;
+    }
+
     .stats-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
     }
-    
+
     .stat-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-card .icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1rem;
+        background: var(--primary-gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .stat-card h6 {
+        color: var(--text-secondary);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-card .stat-value {
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 0;
+    }
+
+    .data-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .data-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 1);
+    }
+
+    .data-card .card-header {
+        background: rgba(102, 126, 234, 0.1);
+        border-bottom: 1px solid rgba(102, 126, 234, 0.2);
         padding: 1.5rem;
     }
-    
-    .stat-card .stat-value {
-        font-size: 1.5rem;
+
+    .data-card .card-title {
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
-}
+
+    .data-card .card-body {
+        padding: 1.5rem;
+    }
+
+    /* 테이블 스타일 */
+    .table {
+        color: var(--text-primary);
+        margin-bottom: 0;
+    }
+
+    .table th {
+        border-color: rgba(102, 126, 234, 0.2);
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 1rem 0.75rem;
+        background: rgba(102, 126, 234, 0.05);
+        white-space: nowrap;
+    }
+
+    .table td {
+        border-color: rgba(102, 126, 234, 0.1);
+        color: var(--text-secondary);
+        padding: 0.75rem;
+        vertical-align: middle;
+    }
+
+    .table tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    .table tbody tr:hover {
+        background: rgba(102, 126, 234, 0.08);
+        transform: scale(1.01);
+    }
+
+    /* 뱃지 스타일 */
+    .status-badge {
+        padding: 0.4rem 0.8rem;
+        border-radius: 15px;
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+
+    .status-active {
+        background: var(--success-gradient);
+        color: white;
+    }
+
+    .status-inactive {
+        background: var(--secondary-gradient);
+        color: white;
+    }
+
+    .commission-badge {
+        background: var(--info-gradient);
+        color: white;
+        padding: 0.3rem 0.6rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+
+    .price-badge {
+        background: var(--warning-gradient);
+        color: white;
+        padding: 0.3rem 0.6rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+
+    /* 중단된 제품 스타일 */
+    .product-discontinued {
+        background: rgba(220, 53, 69, 0.1) !important;
+    }
+
+    .product-discontinued td {
+        color: rgba(220, 53, 69, 0.8) !important;
+    }
+
+    /* 빈 상태 스타일 */
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+    }
+
+    .empty-state i {
+        font-size: 3rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+    }
+
+    .empty-state h5 {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+        color: var(--text-muted);
+        margin-bottom: 0;
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+        .detail-hero h2 {
+            font-size: 1.8rem;
+        }
+        
+        .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            padding: 1.5rem;
+        }
+        
+        .stat-card .stat-value {
+            font-size: 1.5rem;
+        }
+    }
 </style>
 
 <!-- 페이지 히어로 섹션 -->
@@ -403,14 +400,16 @@
     document.addEventListener('DOMContentLoaded', function() {
         // 히어로 섹션 애니메이션
         const hero = document.querySelector('.detail-hero');
-        hero.style.opacity = '0';
-        hero.style.transform = 'translateY(30px)';
-        hero.style.transition = 'all 0.6s ease';
-        
-        setTimeout(() => {
-            hero.style.opacity = '1';
-            hero.style.transform = 'translateY(0)';
-        }, 100);
+        if (hero) {
+            hero.style.opacity = '0';
+            hero.style.transform = 'translateY(30px)';
+            hero.style.transition = 'all 0.6s ease';
+            
+            setTimeout(() => {
+                hero.style.opacity = '1';
+                hero.style.transform = 'translateY(0)';
+            }, 100);
+        }
 
         // 통계 카드 순차 애니메이션
         const statCards = document.querySelectorAll('.stat-card');
@@ -427,14 +426,16 @@
 
         // 데이터 카드 애니메이션
         const dataCard = document.querySelector('.data-card');
-        dataCard.style.opacity = '0';
-        dataCard.style.transform = 'translateY(30px)';
-        dataCard.style.transition = 'all 0.6s ease';
-        
-        setTimeout(() => {
-            dataCard.style.opacity = '1';
-            dataCard.style.transform = 'translateY(0)';
-        }, 700);
+        if (dataCard) {
+            dataCard.style.opacity = '0';
+            dataCard.style.transform = 'translateY(30px)';
+            dataCard.style.transition = 'all 0.6s ease';
+            
+            setTimeout(() => {
+                dataCard.style.opacity = '1';
+                dataCard.style.transform = 'translateY(0)';
+            }, 700);
+        }
 
         // 테이블 행 순차 애니메이션
         const tableRows = document.querySelectorAll('.table tbody tr');
@@ -453,13 +454,16 @@
     });
 
     // 백 버튼 호버 효과
-    document.querySelector('.back-btn').addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-2px) scale(1.05)';
-    });
+    const backBtn = document.querySelector('.back-btn');
+    if (backBtn) {
+        backBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.05)';
+        });
 
-    document.querySelector('.back-btn').addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
+        backBtn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    }
 
     console.log('분류 상세 정보 페이지가 성공적으로 로드되었습니다! 📊');
 </script> 
