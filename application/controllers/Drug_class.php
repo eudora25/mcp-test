@@ -19,9 +19,6 @@ class Drug_class extends CI_Controller {
         $sort_by = $this->input->get('sort_by');
         $sort_dir = $this->input->get('sort_dir');
 
-        // 디버그 로깅
-        log_message('debug', '[Before] Received Parameters - sort_by: ' . $sort_by . ', sort_dir: ' . $sort_dir);
-
         // 유효성 검사 및 기본값 설정
         if (!in_array($sort_by, ['product_count', 'avg_commission_rate', 'avg_commission'])) {
             $sort_by = 'product_count';
@@ -34,9 +31,6 @@ class Drug_class extends CI_Controller {
         if (!in_array($sort_dir, ['ASC', 'DESC'])) {
             $sort_dir = 'DESC';
         }
-
-        // 디버그 로깅
-        log_message('debug', '[After] Processed Parameters - sort_by: ' . $sort_by . ', sort_dir: ' . $sort_dir);
         
         // 페이징 설정
         $config['base_url'] = site_url('drug_class');
@@ -45,6 +39,9 @@ class Drug_class extends CI_Controller {
         $config['page_query_string'] = TRUE;
         $config['query_string_segment'] = 'page';
         $config['reuse_query_string'] = TRUE;
+        
+        // 정렬 정보를 페이지네이션 링크에 유지
+        $config['suffix'] = '&sort_by=' . $sort_by . '&sort_dir=' . $sort_dir;
 
         // Bootstrap 5 스타일 페이징 설정
         $config['full_tag_open'] = '<nav aria-label="Page navigation"><ul class="pagination justify-content-center">';
@@ -80,16 +77,6 @@ class Drug_class extends CI_Controller {
         // 현재 페이지 (0부터 시작)
         $page = ($this->input->get($config['query_string_segment'])) ? $this->input->get($config['query_string_segment']) : 0;
         
-        // 디버깅 정보
-        $debug = array(
-            'requested_sort_by' => $this->input->get('sort_by'),
-            'requested_sort_dir' => $this->input->get('sort_dir'),
-            'actual_sort_by' => $sort_by,
-            'actual_sort_dir' => $sort_dir,
-            'page' => $page,
-            'per_page' => $config['per_page']
-        );
-        
         // 데이터 가져오기
         $data['classes'] = $this->drug_class_model->get_class_statistics($config['per_page'], $page, $sort_by, $sort_dir);
         $data['pagination'] = $this->pagination->create_links();
@@ -98,8 +85,13 @@ class Drug_class extends CI_Controller {
         $data['sort_by'] = $sort_by;
         $data['sort_dir'] = $sort_dir;
         
+        // 페이지 정보 설정
+        $data['page_title'] = '분류별 현황';
+        $data['page_description'] = '의약품 분류별 제품 수량 및 수수료 현황을 확인하세요';
+        $data['page_icon'] = 'fas fa-chart-bar';
+        
         // 뷰 로드
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('drug_class/list', $data);
         $this->load->view('templates/footer');
     }
@@ -121,8 +113,13 @@ class Drug_class extends CI_Controller {
         // 해당 분류의 제품 목록 가져오기
         $data['products'] = $this->drug_class_model->get_class_products($drug_class_cd);
         
+        // 페이지 정보 설정
+        $data['page_title'] = '분류 상세 정보';
+        $data['page_description'] = $data['class_info']['drug_class_name'] . ' 분류의 상세 정보 및 제품 목록';
+        $data['page_icon'] = 'fas fa-info-circle';
+        
         // 뷰 로드
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', $data);
         $this->load->view('drug_class/detail', $data);
         $this->load->view('templates/footer');
     }
