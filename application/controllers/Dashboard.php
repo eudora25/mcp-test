@@ -73,10 +73,8 @@ class Dashboard extends CI_Controller {
             'commission_amount_rank' => $commission_amount_rank
         );
         
-        // 뷰 로드
-        $this->load->view('templates/header');
+        // 뷰 로드 (새로운 독립형 대시보드)
         $this->load->view('dashboard/index', $data);
-        $this->load->view('templates/footer');
     }
 
     public function product_analysis($product_id) {
