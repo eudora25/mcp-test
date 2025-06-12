@@ -115,7 +115,7 @@ class Drug_class extends CI_Controller {
         
         // 페이지 정보 설정
         $data['page_title'] = '분류 상세 정보';
-        $data['page_description'] = $data['class_info']['drug_class_name'] . ' 분류의 상세 정보 및 제품 목록';
+        $data['page_description'] = $data['class_info']->drug_class_name . ' 분류의 상세 정보 및 제품 목록';
         $data['page_icon'] = 'fas fa-info-circle';
         
         // 뷰 로드
