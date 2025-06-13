@@ -38,7 +38,10 @@ class Product_search extends CI_Controller {
         $view_data = array(
             'search_keyword' => $search_keyword,
             'products' => array(),
-            'pagination_links' => ''
+            'pagination_links' => '',
+            'page_title' => '제품 검색',
+            'page_description' => '원하는 의약품을 빠르게 검색하고 상세 정보를 확인하세요',
+            'page_icon' => 'fas fa-search'
         );
         
         if ($search_keyword) {
@@ -53,6 +56,9 @@ class Product_search extends CI_Controller {
             $offset = ($current_page - 1) * $items_per_page;
             $view_data['products'] = $this->product_search_model->search_products($search_keyword, $items_per_page, $offset);
             $view_data['pagination_links'] = $this->pagination->create_links();
+        } else {
+            // 검색어가 없으면 최근 제품 10개 표시
+            $view_data['products'] = $this->product_search_model->search_products('', 10, 0);
         }
         
         $this->load->view('product_search/index', $view_data);
